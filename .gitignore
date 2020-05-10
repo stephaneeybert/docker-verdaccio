@@ -1,0 +1,3 @@
+volumes/plugins
+volumes/storage
+volumes/conf/htpasswd

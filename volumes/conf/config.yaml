@@ -1,0 +1,35 @@
+storage: /verdaccio/storage
+plugins: /verdaccio/plugins
+
+auth:
+  htpasswd:
+    file: /verdaccio/conf/htpasswd
+    # Disable user registration
+    # max_users: -1
+
+security:
+  api:
+    jwt:
+      sign:
+        expiresIn: 360d
+        notBefore: 1
+  web:
+    sign:
+      expiresIn: 7d
+
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org
+
+packages:
+  '@*/*':
+    access: $all
+    publish: $authenticated
+  '**':
+    proxy: npmjs
+
+logs:
+  # console output
+  - {type: stdout, format: pretty, level: debug}
+  # file output
+  #- {type: file, path: verdaccio.log, level: info}    

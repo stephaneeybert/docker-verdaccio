@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  registry:
+    image: verdaccio/verdaccio
+    networks:
+      verdaccio:
+    hostname: verdaccio              
+    ports:
+      - 4873:4873
+    volumes:
+      - ~/dev/docker/registries/verdaccio/volumes/conf:/verdaccio/conf
+      - ~/dev/docker/registries/verdaccio/volumes/plugins:/verdaccio/plugins
+      - ~/dev/docker/registries/verdaccio/volumes/storage:/verdaccio/storage
+    user: "${CURRENT_UID}:${CURRENT_GID}"
+    environment:
+      VERDACCIO_PORT: 4873      
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 3
+        window: 30s
+networks:
+  verdaccio:
+    name: verdaccio
