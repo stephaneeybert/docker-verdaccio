@@ -20,14 +20,6 @@ vi ~/dev/docker/registries/verdaccio/volumes/conf/config.yaml
 touch ~/dev/docker/registries/verdaccio/volumes/conf/htpassword
 ```
 
-Create a user and grant some permissions
-```
-sudo chmod -R 755 ~/dev/docker/registries/verdaccio/volumes;
-sudo groupadd verdaccio;
-sudo useradd -s /bin/false -d /dev/null -g verdaccio verdaccio;
-sudo chown -R verdaccio:verdaccio ~/dev/docker/registries/verdaccio/volumes/storage;
-```
-
 Add the hostname in the /etc/hosts file
 ```
 127.0.1.1 verdaccio
