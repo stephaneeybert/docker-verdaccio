@@ -15,9 +15,6 @@ The packages are installed under the directory storage/data
 
 
 Stopping the registry
-
-On the remote
-
 ```
 docker stack rm verdaccio-registry
 ```

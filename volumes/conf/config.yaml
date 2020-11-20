@@ -1,3 +1,4 @@
+max_body_size: 1000mb
 storage: /verdaccio/storage
 plugins: /verdaccio/plugins
 

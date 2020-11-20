@@ -9,9 +9,9 @@ mkdir -p ~/dev/docker/registries/verdaccio
 
 Create the volume directory
 ```
-mkdir -p ~/dev/docker/registries/verdaccio/volumes/conf
-mkdir -p ~/dev/docker/registries/verdaccio/volumes/plugins
-mkdir -p ~/dev/docker/registries/verdaccio/volumes/storage
+mkdir -p ~/dev/docker/registries/verdaccio/volumes/conf;
+mkdir -p ~/dev/docker/registries/verdaccio/volumes/plugins;
+mkdir -p ~/dev/docker/registries/verdaccio/volumes/storage;
 ```
 
 Create the configuration and the password file
@@ -20,33 +20,37 @@ vi ~/dev/docker/registries/verdaccio/volumes/conf/config.yaml
 touch ~/dev/docker/registries/verdaccio/volumes/conf/htpassword
 ```
 
+Allow large archives
+In the volumes/conf/config.yaml configuration file have the property:
+```
+max_body_size: 1000mb
+```
+
 Add the hostname in the /etc/hosts file
 ```
 127.0.1.1 verdaccio
 ```
 
-Copy the a file
+Log in the registry
 ```
-scp ~/dev/docker/registries/verdaccio/docker-compose.yml stephane@149.28.60.185:~/dev/docker/registries/verdaccio/
-```
-
-On the remote
-
-Make sure the firewall leaves open the registry port
-
-Create the directory
-```
-mkdir -p ~/dev/docker/registries/verdaccio
+npm login --registry http://verdaccio:4873
+Login: stephane
+Password: m...
 ```
 
-Create the volume directory
+Store packages with the scope stephane in verdaccio:4873 even if the current registry is registry.npmjs.org
 ```
-mkdir -p ~/dev/docker/registries/verdaccio/storage
+npm config set @stephaneeybert:registry http://verdaccio:4873
 ```
 
 Start the registry
 ```
 cd ~/dev/docker/registries/verdaccio/;
 docker stack deploy --compose-file docker-compose.yml verdaccio-registry
+```
+
+Stopping the registry
+```
+docker stack rm verdaccio-registry
 ```
 
