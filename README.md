@@ -11,7 +11,7 @@ nmap -p 4873 localhost
 Access the registry
 http://verdaccio:4873
 
-The packages are installed under the directory storage/data
+The packages are installed under the directory ~/dev/docker/storage/data
 
 
 Stopping the registry

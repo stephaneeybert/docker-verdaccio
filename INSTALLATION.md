@@ -31,13 +31,6 @@ Add the hostname in the /etc/hosts file
 127.0.1.1 verdaccio
 ```
 
-Log in the registry
-```
-npm login --registry http://verdaccio:4873
-Login: stephane
-Password: m...
-```
-
 Store packages with the scope stephane in verdaccio:4873 even if the current registry is registry.npmjs.org
 ```
 npm config set @stephaneeybert:registry http://verdaccio:4873
@@ -47,6 +40,13 @@ Start the registry
 ```
 cd ~/dev/docker/registries/verdaccio/;
 docker stack deploy --compose-file docker-compose.yml verdaccio-registry
+```
+
+Log in the registry
+```
+npm login --registry http://verdaccio:4873
+Login: stephane
+Password: m...
 ```
 
 Stopping the registry
